@@ -21,9 +21,15 @@ const addTask = () => {
     list.appendChild(newTask);
 
     // adiciona evento de remover
-    const removeBtn = newTask.querySelector('.remove-btn').addEventListener('click', () => {
-      removeTask(this);
+    const removeBtn = newTask.querySelector('.close-btn').addEventListener('click', () => {
+      removeTask(newTask);
     })
+
+    // adiciona evento de completar tarefa
+
+    const doneBtn = newTask.querySelector('.done-btn').addEventListener('click', () => {
+      completeTask(newTask);
+    });
 
     // limpa texto
     document.querySelector('#task-title').value = '';
@@ -31,7 +37,11 @@ const addTask = () => {
 }
 
 const removeTask = (task) => {
-  task.parentNode(task);
+  task.parentNode.removeChild(task);
+}
+
+const completeTask = (task) => {
+  task.classList.toggle('done');
 }
 
 addBtn.addEventListener('click', (event) => {
